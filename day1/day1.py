@@ -23,17 +23,24 @@ def compute_password_pt2(filename):
     with open(filename, 'r') as file:
         input_lines = [line.strip() for line in file]
         for line in input_lines:
+            print('line', line)
+
             dir = line[:1]
             clicks = int(line[1:])
             pass_zero_count = 0
             if (dir == "L"):
-                pass_zero_count = abs(math.floor((current_val - clicks) / 100))
+                pass_zero_count = abs(math.ceil((current_val - clicks) / 100))
+                if current_val == 0:
+                    pass_zero_count -= 1
                 current_val = (current_val - clicks) % 100
                 if current_val == 0:
                     pass_zero_count += 1
             else:
                 pass_zero_count = abs(math.floor((current_val + clicks) / 100))
                 current_val = (current_val + clicks) % 100
+
+            print('current val', current_val)
+            print('pass zero count', pass_zero_count)
 
             zero_count += pass_zero_count
     return zero_count

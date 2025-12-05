@@ -1,5 +1,4 @@
 import sys
-import math 
 
 def is_invalid_twice(id):
     string_val = str(id)
